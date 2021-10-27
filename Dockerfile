@@ -1,4 +1,4 @@
 FROM openjdk:8
-COPY target/*.jar ./demo-docker.jar
+ADD target/*.jar demo-docker.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","demo-docker.jar"]
