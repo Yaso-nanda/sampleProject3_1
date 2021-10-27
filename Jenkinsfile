@@ -10,7 +10,7 @@ pipeline {
          stage('Deploy'){
              steps {
                 sh 'sudo systemctl start docker'
-                sh 'sudo docker-compose up mysqldb3 -d'
+                sh 'sudo docker-compose up -d mysqldb3'
                 sh 'sudo docker-compose up -d'
              }
          }
