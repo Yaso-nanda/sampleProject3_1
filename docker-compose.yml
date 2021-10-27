@@ -3,7 +3,6 @@ services:
     mysqldb3:
         image: 'mysql:8'
         command: mysqld --general-log=1 --general-log-file=/var/log/mysql/general-log.log
-        container_name: mysql
         environment:
             - MYSQL_ROOT_PASSWORD=root
             - MYSQL_PASSWORD=root
@@ -26,5 +25,5 @@ services:
             context: "./"
             dockerfile: "Dockerfile"
         depends_on:
-           mysql:
+           mysqldb3:
              condition: service_healthy
