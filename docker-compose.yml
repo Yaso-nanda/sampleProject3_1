@@ -13,7 +13,7 @@ services:
         image: springboot-docker-container3
         ports:
             - "8026:8080"
-        restart:always
+        restart: always
         environment: 
             SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb3:3306/employee_management_system
             SPRING_DATASOURCE_USERNAME: "root"
