@@ -2,12 +2,18 @@ version: "3"
 services:
     mysqldb3:
         image: 'mysql:8'
+        command: mysqld --general-log=1 --general-log-file=/var/log/mysql/general-log.log
+        container_name: mysql
         environment:
             - MYSQL_ROOT_PASSWORD=root
             - MYSQL_PASSWORD=root
             - MYSQL_DATABASE=employee_management_system
         ports:
             - "3345:3306"
+        healthcheck:
+          test: "cat /var/log/mysql/general-log.log | grep \"root@localhost on  using Socket\""
+          interval: 1s
+          retries: 120
     springboot-docker-container3:
         image: springboot-docker-container3
         ports:
@@ -20,4 +26,5 @@ services:
             context: "./"
             dockerfile: "Dockerfile"
         depends_on:
-            - mysqldb3
+        mysql:
+            condition: service_healthy
